@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      div {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 80px;
+        font-weight: bold;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="background-color: rgba(255, 0, 0, 0.5)">1</div>
+    <div id="target" style="background-color: rgba(0, 0, 255, 0.5)">2</div>
+    <div style="background-color: rgba(0, 128, 0, 0.5)">3</div>
+    <div style="background-color: rgba(255, 255, 0, 0.5)">4</div>
+  </body>
+  <script>
+    // Get the target element by its ID
+    const targetElement = document.getElementById("target");
+
+    // Create an Intersection Observer instance
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Check if the target element is in the viewport
+          if (entry.isIntersecting) {
+            // When the element is in the viewport, log something to the console
+            console.log("The target element is in the viewport!");
+            targetElement.style.backgroundColor = "#ff00ff";
+          }
+        });
+      },
+      { threshold: 0.5 }
+    ); // Adjust the threshold value as needed (0.5 means 50% visibility of the target element)
+
+    // Start observing the target element
+    observer.observe(targetElement);
+  </script>
+</html>
